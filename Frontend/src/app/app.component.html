@@ -1,0 +1,29 @@
+<div class="page-content">
+    <form novalidate="" class="ui form">
+        <div class="ui grid">
+            <div class="row">
+                <div class="middle aligned fifteen wide column">
+                    <div class="field">
+                        <div class="ui action input">
+                            <input name="url" type="text" placeholder="Website URL" autocomplete="off" [(ngModel)]="url" [disabled]="loading">
+                            <i aria-hidden="true" class="cog blue large icon cog" (click)="showConfigDialog()"></i>
+                            <button class="ui primary button" role="button" (click)="download()" [disabled]="loading">Download {{fileType}}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="middle aligned one wide column">
+                    <div class="field">
+                        <i *ngIf="loading" aria-hidden="true" class="spinner large loading icon spinner"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="middle aligned fifteen wide column">
+                    <div *ngIf="message" class="ui info message"><pre>{{message}}</pre></div>
+                </div>
+                <div class="middle aligned one wide column"></div>
+            </div>
+        </div>
+    </form>
+</div>
+<config-dialog [show]="showConfig" [data]="configCopy" (canceled)="cancelConfigDialog()" (saved)="saveConfigDialog($event)"></config-dialog>

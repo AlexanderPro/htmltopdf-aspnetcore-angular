@@ -1,0 +1,119 @@
+<div *ngIf="show" class="ui page modals dimmer transition visible active" style="display: flex !important;">
+    <div class="ui modal transition visible active"><i aria-hidden="true" class="close icon" (click)="cancel()"></i>
+        <div class="header">Settings</div>
+        <div class="content">
+            <div>
+                <form novalidate="" class="ui form">
+                    <div class="ui grid">
+                        <div class="row">
+                            <div class="middle aligned sixteen wide column">
+                                <div class="ui grid">
+                                    <div class="row">
+                                        <div class="middle aligned sixteen wide column">
+                                            <div class="field">
+                                                <label>File type</label>
+                                                <dropdown [items]="fileTypes" [textField]="'text'" [valueField]="'value'" [selectedOption]="data.fileType" (change)="dropDownOnChanged('fileType', $event)"></dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="data.fileType == 'pdf'" class="row">
+                            <div class="middle aligned sixteen wide column">
+                                <div class="ui grid">
+                                    <div class="row">
+                                        <div class="middle aligned sixteen wide column">
+                                            <div class="field">
+                                                <label>Paper orientation</label>
+                                                <dropdown [items]="paperOrientations" [textField]="'text'" [valueField]="'value'" [selectedOption]="data.paperOrientation" (change)="dropDownOnChanged('paperOrientation', $event)"></dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="data.fileType == 'pdf'" class="row">
+                            <div class="middle aligned sixteen wide column">
+                                <div class="ui grid">
+                                    <div class="row">
+                                        <div class="middle aligned sixteen wide column">
+                                            <div class="field">
+                                                <label>Paper type</label>
+                                                <dropdown [items]="paperTypes" [textField]="'text'" [valueField]="'value'" [selectedOption]="data.paperType" (change)="dropDownOnChanged('paperType', $event)"></dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="data.fileType == 'pdf' && data.paperType == 'custom'" class="row">
+                            <div class="middle aligned sixteen wide column">
+                                <div class="ui grid">
+                                    <div class="row">
+                                        <div class="middle aligned six wide column">
+                                            <div class="field">
+                                                <label>Unit name</label>
+                                                <dropdown [items]="paperUnitNames" [textField]="'text'" [valueField]="'value'" [selectedOption]="data.paperUnitName" (change)="dropDownOnChanged('paperUnitName', $event)"></dropdown>
+                                            </div>
+                                        </div>
+                                        <div class="middle aligned five wide column">
+                                            <div class="field">
+                                                <label>Width</label>
+                                                <div class="ui fluid input"><input name="paperWidth" type="text" [(ngModel)]="data.paperWidth"></div>
+                                            </div>
+                                        </div>
+                                        <div class="middle aligned five wide column">
+                                            <div class="field">
+                                                <label>Height</label>
+                                                <div class="ui fluid input"><input name="paperHeight" type="text" [(ngModel)]="data.paperHeight"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="data.fileType == 'image'" class="row">
+                            <div class="middle aligned sixteen wide column">
+                                <div class="ui grid">
+                                    <div class="row">
+                                        <div class="middle aligned sixteen wide column">
+                                            <div class="field">
+                                                <label>Image</label>
+                                                <dropdown [items]="imageTypes" [textField]="'text'" [valueField]="'value'" [selectedOption]="data.imageType" (change)="dropDownOnChanged('imageType', $event)"></dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="data.fileType == 'image'" class="row">
+                            <div class="middle aligned sixteen wide column">
+                                <div class="ui grid">
+                                    <div class="row">
+                                        <div class="middle aligned eight wide column">
+                                            <div class="field">
+                                                <label>Width px (Optional)</label>
+                                                <div class="ui fluid input"><input name="imageWidth" type="text" [(ngModel)]="data.imageWidth"></div>
+                                            </div>
+                                        </div>
+                                        <div class="middle aligned eight wide column">
+                                            <div class="field">
+                                                <label>Height px (Optional)</label>
+                                                <div class="ui fluid input"><input name="imageHeight" type="text" [(ngModel)]="data.imageHeight"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="actions">
+            <button class="ui button" role="button" (click)="cancel()">Cancel</button>
+            <button class="ui primary button" role="button" (click)="save()">Save</button>
+        </div>
+    </div>
+</div>
